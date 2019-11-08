@@ -92,3 +92,87 @@ nginx = {
 		},
 	},
 }
+
+gen_input(annotations, namespace, name, serviceaccount) = x {
+	x = {
+		"apiVersion": "admission.k8s.io/v1beta1",
+		"kind": "AdmissionReview",
+		"request": {
+			"kind": {
+				"group": "",
+				"kind": "Pod",
+				"version": "v1",
+			},
+			"namespace": namespace,
+			"object": {
+				"metadata": {
+					"annotations": annotations,
+					"creationTimestamp": "2018-10-27T02:12:20Z",
+					"labels": {"app": name},
+					"name": name,
+					"namespace": namespace,
+					"uid": "bbfee96d-d98d-11e8-b280-080027868e77",
+				},
+				"spec": {
+					"containers": [{
+						"image": "nginx",
+						"imagePullPolicy": "Always",
+						"name": name,
+						"resources": {},
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"volumeMounts": [{
+							"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+							"name": "default-token-tm9v8",
+							"readOnly": true,
+						}],
+					}],
+					"dnsPolicy": "ClusterFirst",
+					"restartPolicy": "Always",
+					"schedulerName": "default-scheduler",
+					"securityContext": {},
+					"serviceAccount": serviceaccount,
+					"serviceAccountName": serviceaccount,
+					"terminationGracePeriodSeconds": 30,
+					"tolerations": [
+						{
+							"effect": "NoExecute",
+							"key": "node.kubernetes.io/not-ready",
+							"operator": "Exists",
+							"tolerationSeconds": 300,
+						},
+						{
+							"effect": "NoExecute",
+							"key": "node.kubernetes.io/unreachable",
+							"operator": "Exists",
+							"tolerationSeconds": 300,
+						},
+					],
+					"volumes": [{
+						"name": "default-token-tm9v8",
+						"secret": {"secretName": "default-token-tm9v8"},
+					}],
+				},
+				"status": {
+					"phase": "Pending",
+					"qosClass": "BestEffort",
+				},
+			},
+			"oldObject": null,
+			"operation": "CREATE",
+			"resource": {
+				"group": "",
+				"resource": "pods",
+				"version": "v1",
+			},
+			"uid": "bbfeef88-d98d-11e8-b280-080027868e77",
+			"userInfo": {
+				"groups": [
+					"system:masters",
+					"system:authenticated",
+				],
+				"username": "minikube-user",
+			},
+		}
+	}
+}
