@@ -1,0 +1,14 @@
+version: 0.0.1
+team: 
+short_team_name: 
+policy_name: global
+policy_description: Global OPA helper functions and fixtures
+author: Paul Pietkiewicz <paul.pietkiewicz@contino.io>
+created: 11/07/2019
+core_policy: N/A
+env_entry: N/A
+target_envs: N/A
+sub_target: N/A
+policy_type: kubernetes
+stateless: true
+opa_policy_version: 1
