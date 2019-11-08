@@ -1,4 +1,4 @@
-package library.kubernetes.admission.cls.extlb.fixtures.input.pod
+package library.kubernetes.admission.opa_global.fixtures.input.pod
 
 # kubectl-create on the following resources causes an admission control request to OPA shown below.
 # kind: Pod
