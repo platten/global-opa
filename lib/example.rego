@@ -1,8 +1,0 @@
-#package library.kubernetes.admission.cls.extlb.platform.cloud.global.e0
-
-#import data.library.kubernetes.admission.cls.extlb.lib.loadbalancer
-#import data.library.kubernetes.admission.opa_global.lib.opa_global
-
-#deny[explanation] { loadbalancer.deny[explanation] }
-
-#main = opa_global.admission_review(deny)
